@@ -11,9 +11,9 @@ export default function Registration() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const newUser = { username, password };
-		axios.post("http://localhost:3001/users", newUser).then(() => {
+		axios.post("http://localhost:8080/auth", newUser).then(() => {
 			console.log("New User Created");
-			//navigate("/Login");
+			navigate("/Login");
 		});
 	}
 

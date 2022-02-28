@@ -8,6 +8,9 @@ import axios from "axios";
 import Homepage from "./Pages/Homepage";
 import Login from "./Pages/Login";
 import Registration from "./Pages/Registration";
+import Bookshelf from "./Pages/Bookshelf";
+import BookshelvesList from "./Pages/BookshelvesList";
+import Explore from "./Pages/Explore";
 
 function App() {
 	const [authState, setAuthState] = useState({
@@ -18,7 +21,7 @@ function App() {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:3001/auth/auth", {
+			.get("http://localhost:8080/auth/auth", {
 				headers: {
 					accessToken: localStorage.getItem("accessToken"),
 				},
@@ -51,29 +54,43 @@ function App() {
 			<AuthContext.Provider value={{ authState, setAuthState }}>
 				<Router>
 					<div className="link-container">
-						<Link className="link" to="/">
-							Home
+						{/* <div className="bookmark-logo"></div> */}
+						<Link className="bookmark-logo" to="/"></Link>
+
+						<Link className="link" to="/Bookshelves">
+							All Bookshelves
 						</Link>
+
 						{!authState.status ? (
 							<>
 								<Link className="link" to="/Login">
-									Login
+									Log In
 								</Link>
 								<Link className="link" to="/Registration">
-									Registration
+									Sign Up
 								</Link>
 							</>
 						) : (
 							<>
+								<Link to={`/Explore`} className="link">
+									Explore
+								</Link>
+								<Link to={`/Bookshelf/${authState.id}`} className="link">
+									My Bookshelf
+								</Link>
 								<button onClick={handleLogout}>Logout</button>
 							</>
 						)}
-						<h1>{authState.username}</h1>
+
+						{/* <h1>{authState.username}</h1> */}
 					</div>
 					<Routes>
 						<Route path="/" element={<Homepage />} />
 						<Route path="/Registration" element={<Registration />} />
 						<Route path="/Login" element={<Login />} />
+						<Route path="/Bookshelf/:id" element={<Bookshelf />} />
+						<Route path="/Bookshelves" element={<BookshelvesList />} />
+						<Route path="/Explore" element={<Explore />} />
 					</Routes>
 				</Router>
 			</AuthContext.Provider>

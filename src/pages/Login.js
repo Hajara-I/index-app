@@ -12,7 +12,7 @@ export default function Login() {
 
 	function login() {
 		const data = { username, password };
-		axios.post("http://localhost:3001/auth/login", data).then((response) => {
+		axios.post("http://localhost:8080/auth/login", data).then((response) => {
 			if (response.data.error) {
 				alert(response.data.error);
 			} else {
