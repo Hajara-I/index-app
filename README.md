@@ -1,4 +1,4 @@
-# Index
+# Index - (frontend)
 
 <img width="1276" alt="2" src="https://user-images.githubusercontent.com/91130903/158276116-15b0d8b6-4441-4249-914c-4479bc5417b3.png">
 
